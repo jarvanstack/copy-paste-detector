@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"regexp"
 )
 
 // DefaultParser 默认解析器
@@ -32,6 +33,15 @@ func (d *DefaultParser) getFiles() []*File {
 		d.conf.ParseFolder,
 	}
 
+	match, err := regexp.Compile(d.conf.Contain)
+	if err != nil {
+		panic(err)
+	}
+	contains, err := regexp.Compile(d.conf.Contains)
+	if err != nil {
+		panic(err)
+	}
+
 	// 遍历所有文件夹
 	for len(folders) != 0 {
 		// 第二层
@@ -47,11 +57,18 @@ func (d *DefaultParser) getFiles() []*File {
 					secondFolders = append(secondFolders, folder+"/"+fi.Name())
 					continue
 				}
-				// 添加文件到结果
-				d.result.Files = append(d.result.Files, &File{
+				file := &File{
 					Folder:   folder,
 					FileName: fi.Name(),
-				})
+				}
+				// 如果不包含就跳过
+				path := []byte(file.Folder + "/" + file.FileName)
+				if (d.conf.Contain != "" && !match.Match(path)) ||
+					(d.conf.Contains != "" && contains.Match(path)) {
+					continue
+				}
+				// 添加文件到结果
+				d.result.Files = append(d.result.Files, file)
 			}
 		}
 		folders = secondFolders
