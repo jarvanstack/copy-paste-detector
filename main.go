@@ -1,12 +1,13 @@
 package main
 
 import (
+	"copy-paste-detector/config"
 	"copy-paste-detector/parser"
 	"fmt"
 )
 
 func main() {
-	conf := &parser.Conf{
+	conf := &config.Conf{
 		MinRepeatLine: 0,
 		ParseFolder:   "../copy-paste-detector",
 	}

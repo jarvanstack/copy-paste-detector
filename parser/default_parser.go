@@ -2,6 +2,7 @@ package parser
 
 import (
 	"bufio"
+	"copy-paste-detector/config"
 	"copy-paste-detector/matcher"
 	"copy-paste-detector/util"
 	"io"
@@ -11,11 +12,11 @@ import (
 
 // DefaultParser 默认解析器
 type DefaultParser struct {
-	conf   *Conf
+	conf   *config.Conf
 	result *Result
 }
 
-func NewDefaultParser(conf *Conf) Parser {
+func NewDefaultParser(conf *config.Conf) Parser {
 	return &DefaultParser{
 		conf: conf,
 		result: &Result{

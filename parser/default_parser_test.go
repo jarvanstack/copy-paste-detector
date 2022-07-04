@@ -1,14 +1,15 @@
 package parser
 
 import (
+	"copy-paste-detector/config"
 	"fmt"
 	"testing"
 )
 
-var _defaultConf *Conf
+var _defaultConf *config.Conf
 
 func TestMain(m *testing.M) {
-	_defaultConf = &Conf{
+	_defaultConf = &config.Conf{
 		MinRepeatLine: 0,
 		ParseFolder:   "../../copy-paste-detector",
 	}
@@ -17,7 +18,7 @@ func TestMain(m *testing.M) {
 
 func TestDefaultParser_getFiles(t *testing.T) {
 	type fields struct {
-		conf *Conf
+		conf *config.Conf
 	}
 	tests := []struct {
 		name   string
@@ -44,7 +45,7 @@ func TestDefaultParser_getFiles(t *testing.T) {
 
 func TestDefaultParser_parseResult(t *testing.T) {
 	type fields struct {
-		conf   *Conf
+		conf   *config.Conf
 		result *Result
 	}
 	tests := []struct {
@@ -78,7 +79,7 @@ func TestDefaultParser_parseResult(t *testing.T) {
 
 func TestDefaultParser_Parse(t *testing.T) {
 	type fields struct {
-		conf   *Conf
+		conf   *config.Conf
 		result *Result
 	}
 	tests := []struct {
