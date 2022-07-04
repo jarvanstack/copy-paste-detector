@@ -2,11 +2,11 @@ package parser
 
 import (
 	"bufio"
+	"copy-paste-detector/matcher"
 	"copy-paste-detector/util"
 	"io"
 	"io/ioutil"
 	"os"
-	"regexp"
 )
 
 // DefaultParser 默认解析器
@@ -33,14 +33,8 @@ func (d *DefaultParser) getFiles() []*File {
 		d.conf.ParseFolder,
 	}
 
-	match, err := regexp.Compile(d.conf.Contain)
-	if err != nil {
-		panic(err)
-	}
-	contains, err := regexp.Compile(d.conf.Contains)
-	if err != nil {
-		panic(err)
-	}
+	contain := matcher.NewGlobMatcher(d.conf.Contain)
+	ignore := matcher.NewGlobMatcher(d.conf.Ignore)
 
 	// 遍历所有文件夹
 	for len(folders) != 0 {
@@ -61,10 +55,10 @@ func (d *DefaultParser) getFiles() []*File {
 					Folder:   folder,
 					FileName: fi.Name(),
 				}
-				// 如果不包含就跳过
-				path := []byte(file.Folder + "/" + file.FileName)
-				if (d.conf.Contain != "" && !match.Match(path)) ||
-					(d.conf.Contains != "" && contains.Match(path)) {
+				// 首先是要 Ignore
+				// 然后就是不能有 contain
+				path := file.Folder + "/" + file.FileName
+				if ignore.Match(path) && !contain.Match(path) {
 					continue
 				}
 				// 添加文件到结果

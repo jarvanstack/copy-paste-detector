@@ -3,9 +3,6 @@ package main
 import (
 	"copy-paste-detector/parser"
 	"fmt"
-	"os"
-	"os/exec"
-	"path/filepath"
 )
 
 func main() {
