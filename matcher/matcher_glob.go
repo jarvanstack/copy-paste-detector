@@ -6,7 +6,7 @@ type GlobMatcher struct {
 	contains map[string]struct{}
 }
 
-func NewGlobMatcher(containRules []string) *GlobMatcher {
+func NewGlobMatcher(containRules []string) Marcher {
 	g := &GlobMatcher{
 		contains: make(map[string]struct{}),
 	}

@@ -33,7 +33,7 @@ func TestDefaultParser_getFiles(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := New(tt.fields.conf).(*DefaultParser)
+			d := NewDefaultParser(tt.fields.conf).(*DefaultParser)
 			got := d.getFiles()
 			for _, file := range got {
 				fmt.Printf("file=%#v\n", file.Folder+file.FileName)
@@ -59,7 +59,7 @@ func TestDefaultParser_parseResult(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := New(tt.fields.conf).(*DefaultParser)
+			d := NewDefaultParser(tt.fields.conf).(*DefaultParser)
 			d.getFiles()
 			d.parseResult()
 			for k := range d.result.RepeatLines {
@@ -94,7 +94,7 @@ func TestDefaultParser_Parse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := New(tt.fields.conf)
+			d := NewDefaultParser(tt.fields.conf)
 			r := d.Parse()
 			fmt.Printf("len(r.IDLines): %v\n", len(r.IDLines))
 		})

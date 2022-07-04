@@ -15,7 +15,7 @@ type DefaultParser struct {
 	result *Result
 }
 
-func New(conf *Conf) Parser {
+func NewDefaultParser(conf *Conf) Parser {
 	return &DefaultParser{
 		conf: conf,
 		result: &Result{
