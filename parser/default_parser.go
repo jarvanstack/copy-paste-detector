@@ -73,7 +73,7 @@ func (d *DefaultParser) getFiles() []*File {
 
 func (d *DefaultParser) parseResult() {
 	// 获取获取结果集
-	id := 1 // 自增序列号
+	id := 0 // 自增序列号
 	for _, f := range d.result.Files {
 		f2, err := os.Open(f.Folder + "/" + f.FileName)
 		defer f2.Close()

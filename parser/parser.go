@@ -26,4 +26,5 @@ type LineNode struct {
 	Prev             *LineNode // 上一行
 	Next             *LineNode // 下一行
 	F                *File     // 所属文件
+	Visited          bool      // 检查的时候是否已经被使用过
 }
