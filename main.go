@@ -13,6 +13,6 @@ func main() {
 	pr := parse.Parse()
 	d := detector.NewDefaultDetector(conf, pr)
 	dr := d.Detect()
-	o := out.NewConsoleOut(dr)
+	o := out.NewConsoleTableOut(dr)
 	o.Output()
 }

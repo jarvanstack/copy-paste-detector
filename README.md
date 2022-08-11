@@ -4,7 +4,7 @@
 
 ## 快速开始
 
-clone 
+clone
 
 ```bash
 git clone https://github.com/dengjiawen8955/copy-paste-detector.git
@@ -13,7 +13,7 @@ cd copy-paste-detector
 
 配置文件 vim cpd.toml
 
-```
+```toml
 minRepeatLine = 4  # 最小重复行
 parseFolder   = "out"   # 解析的文件夹路径
 Ignore        = [] # 过滤的正则表达式
@@ -22,7 +22,7 @@ Contain       = [] # 匹配的正则表达式文件, 优先级高于 Ignore
 
 编译
 
-```
+```bash
 go build copy-paste-detector .
 ```
 
@@ -37,18 +37,16 @@ pflag: help requested
 
 run
 
-```
+```bash
 $ ./copy-paste-detector 
-@==========@
-重复代码片段总数:1
-@==========@1
-重复代码片段:
++------+------+--------------+
+| 片段 | 序号 | 文件名:行数  |
++------+------+--------------+
+|    1 |    1 | out1.txt:2-5 |
+|    1 |    2 | out2.txt:6-9 |
++------+------+--------------+
 b
 c
 d
 3
-@==========@1
-重复代码片段文件总数2
-1 out1.txt:2-5
-2 out2.txt:6-9
 ```

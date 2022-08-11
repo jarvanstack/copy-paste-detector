@@ -16,6 +16,6 @@ func TestConsoleOut_Output(t *testing.T) {
 	pr := p.Parse()
 	d := detector.NewDefaultDetector(conf, pr)
 	dr := d.Detect()
-	o := NewConsoleOut(dr)
+	o := NewConsoleTableOut(dr)
 	o.Output()
 }
