@@ -2,6 +2,8 @@
 
 复制粘贴检查器
 
+![基础架构](https://markdown-1304103443.cos.ap-guangzhou.myqcloud.com/2022-02-0420220831104153.png)
+
 ## 快速开始
 
 clone
