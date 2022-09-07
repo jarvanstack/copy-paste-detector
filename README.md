@@ -57,3 +57,9 @@ d
 
 * Parser 主要返回 `map[string][]IDLine` 重复的 IDLine 可以通过 IDLine 查询到确定的文件和确定的行
 * Detector 主要返回 `BlockMatrix [][]*Block{Start, End}` 重复代码块, 遍历链表, 通过重复 map 的 IDLine 获取重复代码块
+
+## 优化思路
+
+重复代码检测专利: <https://patents.google.com/patent/CN106294139B/zh>
+
+参考 jscpd: <https://github.com/kucherenko/jscpd>
